@@ -98,6 +98,10 @@ def cleanPositionBlock(rawCargo) -> dict:
 def positionDataParser(rowElem) -> Position:
   dataElems = rowElem.find_elements(By.TAG_NAME, 'td')
 
+  if len(dataElems) < 7:  # 7 expected elements based on your code
+    raise ValueError(f"Expected at least 7 elements in dataElems, but got {len(dataElems)}. Check the page structure.")
+
+
   assetText = dataElems[0].get_attribute('innerText')
   pnlText = dataElems[2].get_attribute('innerText')
   collatText = dataElems[3].get_attribute('innerText')

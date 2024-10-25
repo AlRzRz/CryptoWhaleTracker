@@ -8,8 +8,8 @@ from .parser import positionDataParser, orderDataParser
 import random
 
 
-WAIT = 11
-MINIWAIT = 5
+WAIT = 12
+MINIWAIT = 7
 
 
 def random_sleep(min_seconds, max_seconds):
@@ -136,6 +136,7 @@ def accountPageScraper(accountURLS: set) -> list[Trader]:
   traderIDTracker = 0
 
   driver = webdriver.Firefox()
+  orderButtonTrack = False
 
   for i, URL in enumerate(accountURLS):
     positions = []
@@ -150,12 +151,19 @@ def accountPageScraper(accountURLS: set) -> list[Trader]:
 
     elemTuple = (positionsElem, ordersElem)
     posTrue, ordTrue = positionsAndOrdersCheck(elemTuple=elemTuple)
+    print(posTrue, ordTrue)
 
     if posTrue:
+      if orderButtonTrack:
+        positionsElem.click()
+        orderButtonTrack = False
+      time.sleep(3)
       tableElem = driver.find_element(By.XPATH, accountRoutes['POS_TABLE'])
       positions = accountPositionsAccumulator(tableElem=tableElem)
+      time.sleep(2)
     if ordTrue:
       orders = accountOrdersAccumulator(driver=driver)
+      orderButtonTrack = True
 
     newTrader = Trader(traderIDTracker, URL)
     newTrader.addPositionLst(positions)
