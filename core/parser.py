@@ -72,6 +72,8 @@ def cleanEntryText(text, outputDict):
 
 
 def cleanLiqText(text, outputDict):
+  liq = None
+  
   pattern = r'\$([\d,]+\.\d+)'
   match = re.search(pattern, text)
 

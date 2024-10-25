@@ -63,7 +63,7 @@ def calculate_liquidation_risk(tradersLst, threshold_percent=5):
     for trader in tradersLst:
         for pos in trader.positions:
             live_price = prices.get(pos.asset)
-            if live_price is not None:
+            if pos.liq is not None and live_price is not None:
                 liquidation_diff = abs((pos.liq - live_price) / live_price) * 100
                 if liquidation_diff <= threshold_percent:
                     risk_positions.append({

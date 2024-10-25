@@ -160,7 +160,6 @@ def accountPageScraper(accountURLS: set) -> list[Trader]:
       time.sleep(3)
       tableElem = driver.find_element(By.XPATH, accountRoutes['POS_TABLE'])
       positions = accountPositionsAccumulator(tableElem=tableElem)
-      time.sleep(2)
     if ordTrue:
       orders = accountOrdersAccumulator(driver=driver)
       orderButtonTrack = True
