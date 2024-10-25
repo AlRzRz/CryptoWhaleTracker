@@ -103,9 +103,7 @@ def accountPositionsAccumulator(tableElem) -> list[Position]:
 def accountOrdersAccumulator(driver) -> list[Order]:
   ordersLst = []
 
-  ORD_TAB = driver.find_element(By.XPATH, accountRoutes['ORDERS_TAB'])
-  ORD_TAB.click()
-  time.sleep(5)
+
 
   tableElem = driver.find_element(By.XPATH, accountRoutes['ORD_TABLE'])
   rowElems = tableElem.find_elements(By.TAG_NAME, 'tr')
@@ -136,7 +134,7 @@ def accountPageScraper(accountURLS: set) -> list[Trader]:
   traderIDTracker = 0
 
   driver = webdriver.Firefox()
-  orderButtonTrack = False
+  orderButtonTracker = False
 
   for i, URL in enumerate(accountURLS):
     positions = []
@@ -154,15 +152,19 @@ def accountPageScraper(accountURLS: set) -> list[Trader]:
     print(posTrue, ordTrue)
 
     if posTrue:
-      if orderButtonTrack:
+      if orderButtonTracker:
         positionsElem.click()
-        orderButtonTrack = False
+        orderButtonTracker = False
       time.sleep(3)
       tableElem = driver.find_element(By.XPATH, accountRoutes['POS_TABLE'])
       positions = accountPositionsAccumulator(tableElem=tableElem)
+
     if ordTrue:
+      if orderButtonTracker == False:
+        ordersElem.click()
+        time.sleep(5)
       orders = accountOrdersAccumulator(driver=driver)
-      orderButtonTrack = True
+      orderButtonTracker = True
 
     newTrader = Trader(traderIDTracker, URL)
     newTrader.addPositionLst(positions)
