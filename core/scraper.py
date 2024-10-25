@@ -81,6 +81,8 @@ def accountURLScraper() -> list:
 
   driver.quit()
 
+  return setOfAccountURLS
+
 
 # Functions dedicated to scraping trader data found below
 
