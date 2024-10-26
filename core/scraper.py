@@ -72,7 +72,7 @@ def accountURLScraper() -> list:
   traverseDriver(driver, 'PAGE2_X')
   accumulateTable(driver, setOfAccountURLS, MINIWAIT)
 
-
+  print('Links accumulated:\n')
   for i in setOfAccountURLS:
     print(i)
 
@@ -137,6 +137,7 @@ def accountPageScraper(accountURLS: set) -> list[Trader]:
   orderButtonTracker = False
 
   for i, URL in enumerate(accountURLS):
+    print(f'Accumulating Info: Trader # {traderIDTracker}\n')
     positions = []
     orders = []
 
@@ -149,7 +150,6 @@ def accountPageScraper(accountURLS: set) -> list[Trader]:
 
     elemTuple = (positionsElem, ordersElem)
     posTrue, ordTrue = positionsAndOrdersCheck(elemTuple=elemTuple)
-    print(posTrue, ordTrue)
 
     if posTrue:
       if orderButtonTracker:

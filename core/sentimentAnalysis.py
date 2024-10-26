@@ -8,12 +8,90 @@ import numpy as np
 import math
 import time
 from rich.markdown import Markdown
+import os
+import datetime
+import re
+import webbrowser
 
 # Initialize Rich console
-console = Console()
+console = Console(record=True)
+OUTPUT_DIR = os.path.join(os.path.dirname(__file__), '../data')
+
 
 # Caching for live prices
 price_cache = {}
+
+
+def manage_output_files():
+    """Rotates output files and manages naming based on run history."""
+    new_file = os.path.join(OUTPUT_DIR, 'new.html')
+    prev_file = os.path.join(OUTPUT_DIR, 'prev.html')
+    old_file = os.path.join(OUTPUT_DIR, 'old.html')
+
+    # Delete old.html if it exists
+    if os.path.exists(old_file):
+        os.remove(old_file)
+
+    # Move prev.html to old.html if it exists
+    if os.path.exists(prev_file):
+        os.rename(prev_file, old_file)
+
+    # Move new.html to prev.html if it exists
+    if os.path.exists(new_file):
+        os.rename(new_file, prev_file)
+
+def save_html_output():
+    """Saves the current console output to new.html with timestamp information."""
+    # Ensure the data directory exists
+    if not os.path.exists(OUTPUT_DIR):
+        os.makedirs(OUTPUT_DIR)
+        
+    date_str = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    console.print(f"\n[b]Analysis Run Date:[/b] {date_str}\n")
+
+    # Manage file rotation before saving the new file
+    manage_output_files()
+
+    # Save new.html file in the data directory
+    new_output_path = os.path.join(OUTPUT_DIR, 'new.html')
+    console.save_html(new_output_path)
+
+
+def strip_html_tags(text):
+    """Removes HTML tags from the given text."""
+    clean = re.compile('<.*?>')
+    return re.sub(clean, '', text)
+
+
+
+def compare_output_files():
+    """Compares prev.html and new.html, opens both files in the browser without printing differences to the console."""
+    new_file = os.path.join(OUTPUT_DIR, 'new.html')
+    prev_file = os.path.join(OUTPUT_DIR, 'prev.html')
+
+    # Open HTML files in the browser if they exist
+    if os.path.exists(new_file):
+        webbrowser.open(f'file://{os.path.abspath(new_file)}')
+    if os.path.exists(prev_file):
+        webbrowser.open(f'file://{os.path.abspath(prev_file)}')
+
+    # Display message if prev.html does not exist
+    if not os.path.exists(prev_file):
+        console.print("[yellow]No previous output file found to compare with.[/yellow]")
+        return
+
+    # Remove the console print of differences
+    with open(prev_file, 'r', encoding='utf-8') as file:
+        prev_content = strip_html_tags(file.read()).splitlines()
+    with open(new_file, 'r', encoding='utf-8') as file:
+        new_content = strip_html_tags(file.read()).splitlines()
+
+    # Find differences without printing them
+    differences = [line for line in new_content if line not in prev_content]
+
+    # Optionally, you can log differences to a file or simply omit this step
+
+
 
 def convert_asset_ticker(asset):
     """Converts asset ticker from 'BTC/USD' to 'bitcoin' for CoinGecko."""
@@ -165,10 +243,18 @@ def mainAnalysis(tradersLst):
     print_asset_data(asset_data)
     print_pending_orders(pending_orders)
 
+    # Order Hotspot Analysis
+    console.print("\n[bold cyan]Order Hotspot Analysis[/bold cyan]")
+    hotspots = calculate_order_hotspots(tradersLst)
+    print_order_hotspots(hotspots)
+
     # Liquidation Risk Analysis
     console.print("\n[bold cyan]Liquidation Risk Analysis[/bold cyan]")
     risk_positions = calculate_liquidation_risk(tradersLst, threshold_percent=5)
     print_liquidation_risk(risk_positions)
+
+    save_html_output()
+    compare_output_files()
 
 # Helper functions
 
@@ -190,7 +276,8 @@ def calculate_long_short_ratios(tradersLst):
     return (long_count, short_count, long_short_ratio), (long_size, short_size, long_short_size_ratio)
 
 def calculate_leverage_distribution(tradersLst):
-    leverage_values = [pos.leverage for trader in tradersLst for pos in trader.positions]
+    # Filter out positions with leverage above 50
+    leverage_values = [pos.leverage for trader in tradersLst for pos in trader.positions if pos.leverage <= 50]
     if not leverage_values:
         return None
     return {
@@ -199,13 +286,13 @@ def calculate_leverage_distribution(tradersLst):
     }
 
 def calculate_pnl_stats(tradersLst):
+    # Only keep Average PnL and Median PnL
     pnls = [pos.pnl for trader in tradersLst for pos in trader.positions]
     if not pnls:
         return None
     return {
         'average_pnl': np.mean(pnls),
         'median_pnl': np.median(pnls),
-        'variance_pnl': np.var(pnls)
     }
 
 def calculate_collateral_distribution(tradersLst):
@@ -228,7 +315,12 @@ def get_largest_position_holders(tradersLst, n=10):
     return traders_positions[:n]
 
 def get_top_leveraged_traders(tradersLst, n=10):
-    traders_leverage = [(trader, max([pos.leverage for pos in trader.positions], default=0)) for trader in tradersLst]
+    # Exclude traders with positions having leverage above 50
+    traders_leverage = [
+        (trader, max([pos.leverage for pos in trader.positions if pos.leverage <= 50], default=0))
+        for trader in tradersLst
+    ]
+    traders_leverage = [item for item in traders_leverage if item[1] <= 50]
     traders_leverage.sort(key=lambda x: x[1], reverse=True)
     return traders_leverage[:n]
 
@@ -237,6 +329,8 @@ def calculate_asset_stats(tradersLst):
     
     for trader in tradersLst:
         for pos in trader.positions:
+            if pos.asset == "Unknown":  # Skip assets marked as "Unknown"
+                continue
             asset_data = asset_stats[pos.asset]
             asset_data['positions'] += 1
             asset_data['leverage'].append(pos.leverage)
@@ -266,6 +360,61 @@ def calculate_pending_orders(tradersLst):
                 asset_data['longs'] += 1
 
     return pending_orders
+
+
+def calculate_order_hotspots(tradersLst, price_range_percent=3, min_traders=3):
+    """
+    Identifies hotspot zones where traders have placed orders within a specified price range.
+    Parameters:
+    - tradersLst: List of Trader objects
+    - price_range_percent: The range within which prices are considered a cluster
+    - min_traders: Minimum number of traders for a cluster to be considered a hotspot
+    
+    Returns:
+    A dictionary with asset as keys and clusters of prices with associated order statistics.
+    """
+    # Dictionary to track hotspots by asset
+    hotspots = defaultdict(lambda: defaultdict(lambda: {'Long': [], 'Short': []}))
+
+    # Process each trader's orders
+    for trader in tradersLst:
+        for order in trader.orders:
+            # Determine the price range for clustering
+            trigger_price = order.trigger
+            lower_bound = trigger_price * (1 - price_range_percent / 100)
+            upper_bound = trigger_price * (1 + price_range_percent / 100)
+
+            # Add order to relevant hotspot cluster
+            direction = "Short" if order.short else "Long"
+            clusters = hotspots[order.asset]
+            found_cluster = False
+
+            for cluster_price, data in clusters.items():
+                if lower_bound <= cluster_price <= upper_bound:
+                    data[direction].append({'trader_id': trader.traderID, 'price': trigger_price, 'type': order.orderType})
+                    found_cluster = True
+                    break
+
+            if not found_cluster:
+                # Create a new cluster if none matched
+                clusters[trigger_price][direction].append({'trader_id': trader.traderID, 'price': trigger_price, 'type': order.orderType})
+
+    # Filter clusters to identify hotspots
+    final_hotspots = {}
+    for asset, clusters in hotspots.items():
+        for cluster_price, data in clusters.items():
+            long_traders = len({order['trader_id'] for order in data['Long']})
+            short_traders = len({order['trader_id'] for order in data['Short']})
+            if long_traders >= min_traders or short_traders >= min_traders:
+                if asset not in final_hotspots:
+                    final_hotspots[asset] = []
+                final_hotspots[asset].append({
+                    'cluster_price': cluster_price,
+                    'Long': data['Long'],
+                    'Short': data['Short']
+                })
+    return final_hotspots
+
 
 # Output formatting functions using Rich
 def print_long_short_data(long_short, long_short_size):
@@ -299,8 +448,7 @@ def print_pnl_distribution(pnl_stats):
     table = Table(title="PnL Distribution")
     table.add_column("Average PnL", justify="right", style="cyan")
     table.add_column("Median PnL", justify="right", style="magenta")
-    table.add_column("PnL Variance", justify="right", style="green")
-    table.add_row(f"{pnl_stats['average_pnl']:.2f}", f"{pnl_stats['median_pnl']:.2f}", f"{pnl_stats['variance_pnl']:.2f}")
+    table.add_row(f"{pnl_stats['average_pnl']:.2f}", f"{pnl_stats['median_pnl']:.2f}")
     console.print(table)
 
 def print_collateral_distribution(collateral_dist):
@@ -338,19 +486,19 @@ def print_largest_position_holders(traders):
     console.print(table)
 
 def print_top_leveraged_traders(traders):
-    table = Table(title="Top 10 Leveraged Traders")
+    table = Table(title="Top 10 Leveraged Traders (<= 50x)")
     table.add_column("Trader ID", justify="right", style="cyan")
     table.add_column("Leverage", justify="right", style="green")
     table.add_column("URL", justify="right", style="blue")
 
     for trader, leverage in traders:
-        url_link = f"[{trader.url}]({trader.url})"  # Markdown formatted link
+        url_link = f"[{trader.url}]({trader.url})"
         table.add_row(str(trader.traderID), f"{leverage:.2f}", url_link)
 
     console.print(table)
 
 def print_asset_data(asset_data):
-    table = Table(title="Asset Data")
+    table = Table(title="Asset Data (Excluding 'Unknown')")
     table.add_column("Asset", justify="right", style="cyan")
     table.add_column("Longs", justify="right", style="magenta")
     table.add_column("Shorts", justify="right", style="green")
@@ -377,9 +525,35 @@ def print_pending_orders(pending_orders):
     console.print(table)
 
 
+def print_order_hotspots(hotspots):
+    """
+    Prints out hotspots with details on traders and orders within each cluster.
+    """
+    if not hotspots:
+        console.print("[yellow]No order hotspots identified.[/yellow]")
+        return
 
+    for asset, clusters in hotspots.items():
+        table = Table(title=f"{asset} Order Hotspots")
+        table.add_column("Cluster Price", justify="right", style="cyan")
+        table.add_column("Direction", justify="right", style="magenta")
+        table.add_column("Trader ID", justify="right", style="green")
+        table.add_column("Order Type", justify="right", style="yellow")
+        table.add_column("Price", justify="right", style="blue")
 
-
+        for cluster in clusters:
+            for direction, orders in cluster.items():
+                if direction not in ["Long", "Short"]:
+                    continue
+                for order in orders:
+                    table.add_row(
+                        f"{cluster['cluster_price']:.2f}",
+                        direction,
+                        str(order['trader_id']),
+                        order['type'],
+                        f"{order['price']:.2f}"
+                    )
+        console.print(table)
 
 
 
