@@ -173,10 +173,10 @@ def print_liquidation_risk(risk_positions):
     table.add_column("Position Size", justify="right", style="yellow")
     table.add_column("PnL", justify="right", style="red")
     table.add_column("Collateral", justify="right", style="cyan")
-    table.add_column("Liq Price", justify="right", style="blue")
+    table.add_column("Liq Price", justify="right", style="yellow")
     table.add_column("Current Price", justify="right", style="green")
     table.add_column("Difference %", justify="right", style="magenta")
-    table.add_column("URL", justify="right", style="blue")
+    table.add_column("URL", justify="right", style="yellow")
 
     for pos in risk_positions:
         # Use Rich's hyperlink syntax with smaller text styling
@@ -465,7 +465,7 @@ def print_top_traders(traders, title):
     table = Table(title=title)
     table.add_column("Trader ID", justify="right", style="cyan")
     table.add_column("PnL", justify="right", style="magenta")
-    table.add_column("URL", justify="right", style="blue")
+    table.add_column("URL", justify="right", style="yellow")
 
     for trader, pnl in traders:
         url_link = f"[{trader.url}]({trader.url})"  # Markdown formatted link
@@ -477,7 +477,7 @@ def print_largest_position_holders(traders):
     table = Table(title="Largest Position Holders")
     table.add_column("Trader ID", justify="right", style="cyan")
     table.add_column("Position Size", justify="right", style="green")
-    table.add_column("URL", justify="right", style="blue")
+    table.add_column("URL", justify="right", style="yellow")
 
     for trader, size in traders:
         url_link = f"[{trader.url}]({trader.url})"  # Markdown formatted link
@@ -489,7 +489,7 @@ def print_top_leveraged_traders(traders):
     table = Table(title="Top 10 Leveraged Traders (<= 50x)")
     table.add_column("Trader ID", justify="right", style="cyan")
     table.add_column("Leverage", justify="right", style="green")
-    table.add_column("URL", justify="right", style="blue")
+    table.add_column("URL", justify="right", style="yellow")
 
     for trader, leverage in traders:
         url_link = f"[{trader.url}]({trader.url})"
@@ -503,7 +503,7 @@ def print_asset_data(asset_data):
     table.add_column("Longs", justify="right", style="magenta")
     table.add_column("Shorts", justify="right", style="green")
     table.add_column("Average Leverage", justify="right", style="yellow")
-    table.add_column("Average PnL", justify="right", style="blue")
+    table.add_column("Average PnL", justify="right", style="cyan")
 
     sorted_data = sorted(asset_data.items(), key=lambda x: x[1]['average_pnl'], reverse=True)
     for asset, data in sorted_data:
@@ -539,7 +539,7 @@ def print_order_hotspots(hotspots):
         table.add_column("Direction", justify="right", style="magenta")
         table.add_column("Trader ID", justify="right", style="green")
         table.add_column("Order Type", justify="right", style="yellow")
-        table.add_column("Price", justify="right", style="blue")
+        table.add_column("Price", justify="right", style="cyan")
 
         for cluster in clusters:
             for direction, orders in cluster.items():

@@ -11,7 +11,8 @@
 .r6 {color: #008000; text-decoration-color: #008000}
 .r7 {color: #808000; text-decoration-color: #808000}
 .r8 {color: #000080; text-decoration-color: #000080}
-.r9 {color: #00ff00; text-decoration-color: #00ff00; font-weight: bold}
+.r9 {color: #800000; text-decoration-color: #800000}
+.r10 {color: #00ff00; text-decoration-color: #00ff00; font-weight: bold}
 body {
     color: #000000;
     background-color: #ffffff;
@@ -20,107 +21,217 @@ body {
 </head>
 <body>
     <pre style="font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><code style="font-family:inherit"><span class="r1">Live Prices for Tracked Assets</span>
-UNI: $<span class="r1">7.60</span>
-DOGE: $<span class="r1">0.13</span>
-AVAX: $<span class="r1">25.54</span>
-BTC: $<span class="r1">66995.00</span>
-GMX: $<span class="r1">21.18</span>
+BNB: $<span class="r1">583.53</span>
+SOL: $<span class="r1">171.60</span>
+AAVE: $<span class="r1">142.49</span>
+NEAR: $<span class="r1">4.21</span>
+GMX: $<span class="r1">20.90</span>
+LTC: $<span class="r1">68.21</span>
+UNI: $<span class="r1">7.47</span>
+DOGE: $<span class="r1">0.14</span>
+AVAX: $<span class="r1">25.34</span>
+ARB: $<span class="r1">0.51</span>
+ETH: $<span class="r1">2471.14</span>
+ATOM: $<span class="r1">4.34</span>
+WIF: $<span class="r1">0.64</span>
+XRP: $<span class="r1">0.51</span>
+BTC: $<span class="r1">66956.00</span>
+OP: $<span class="r1">1.57</span>
+SUI: $<span class="r1">1.78</span>
 PEPE: $<span class="r1">0.00</span>
-NEAR: $<span class="r1">4.23</span>
-SOL: $<span class="r1">168.83</span>
-LINK: $<span class="r1">11.13</span>
-ETH: $<span class="r1">2462.97</span>
+LINK: $<span class="r1">10.91</span>
+SHIB: $<span class="r1">0.00</span>
 
 <span class="r1">Market Data</span>
-<span class="r2">           Long vs Short           </span>
-┏━━━━━━━┳━━━━━━━┳━━━━━━━━━┳━━━━━━━┓
-┃<span class="r3">  Type </span>┃<span class="r3"> Count </span>┃<span class="r3">    Size </span>┃<span class="r3"> Ratio </span>┃
-┡━━━━━━━╇━━━━━━━╇━━━━━━━━━╇━━━━━━━┩
-│<span class="r4">  Long </span>│<span class="r5">     0 </span>│<span class="r6">       0 </span>│<span class="r7">  0.00 </span>│
-│<span class="r4"> Short </span>│<span class="r5">    13 </span>│<span class="r6"> 9374711 </span>│<span class="r7">  0.00 </span>│
-└───────┴───────┴─────────┴───────┘
+<span class="r2">           Long vs Short            </span>
++----------------------------------+
+|<span class="r3">  Type </span>|<span class="r3"> Count </span>|<span class="r3">     Size </span>|<span class="r3"> Ratio </span>|
+|-------+-------+----------+-------|
+|<span class="r4">  Long </span>|<span class="r5">    25 </span>|<span class="r6"> 16538775 </span>|<span class="r7">  0.19 </span>|
+|<span class="r4"> Short </span>|<span class="r5">   132 </span>|<span class="r6"> 52700055 </span>|<span class="r7">  0.31 </span>|
++----------------------------------+
 <span class="r2">       Leverage Distribution       </span>
-┏━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━┓
-┃<span class="r3"> Average Leverage </span>┃<span class="r3"> Max Leverage </span>┃
-┡━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━┩
-│<span class="r4">             8.35 </span>│<span class="r6">        16.57 </span>│
-└──────────────────┴──────────────┘
++---------------------------------+
+|<span class="r3"> Average Leverage </span>|<span class="r3"> Max Leverage </span>|
+|------------------+--------------|
+|<span class="r4">             5.81 </span>|<span class="r6">        36.67 </span>|
++---------------------------------+
 <span class="r2">      PnL Distribution      </span>
-┏━━━━━━━━━━━━━┳━━━━━━━━━━━━┓
-┃<span class="r3"> Average PnL </span>┃<span class="r3"> Median PnL </span>┃
-┡━━━━━━━━━━━━━╇━━━━━━━━━━━━┩
-│<span class="r4">    24526.41 </span>│<span class="r5">    4623.40 </span>│
-└─────────────┴────────────┘
++--------------------------+
+|<span class="r3"> Average PnL </span>|<span class="r3"> Median PnL </span>|
+|-------------+------------|
+|<span class="r4">     5795.07 </span>|<span class="r5">    1550.01 </span>|
++--------------------------+
 <span class="r2">         Collateral Distribution         </span>
-┏━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━┓
-┃<span class="r3"> Total Collateral </span>┃<span class="r3"> Average Collateral </span>┃
-┡━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━┩
-│<span class="r4">       1352769.71 </span>│<span class="r6">          104059.21 </span>│
-└──────────────────┴────────────────────┘
++---------------------------------------+
+|<span class="r3"> Total Collateral </span>|<span class="r3"> Average Collateral </span>|
+|------------------+--------------------|
+|<span class="r4">      19430752.80 </span>|<span class="r6">          123762.76 </span>|
++---------------------------------------+
 
 <span class="r1">Trader Data</span>
-<span class="r2">                                                  Most Profitable Traders                                                  </span>
-┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-┃<span class="r3"> Trader ID </span>┃<span class="r3">       PnL </span>┃<span class="r3">                                                                                             URL </span>┃
-┡━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
-│<span class="r4">         2 </span>│<span class="r5"> 359023.02 </span>│<span class="r8"> (https://app.gmx.io/#/accounts/0xfE191897EE42D56c6b0C85C7B489C1b1cb28c1E0?network=arbitrum&amp;v=2) </span>│
-│<span class="r4">         0 </span>│<span class="r5">  -7890.85 </span>│<span class="r8"> (https://app.gmx.io/#/accounts/0x591b6F096281DD7b645767C96aC34863A4Df9a89?network=arbitrum&amp;v=2) </span>│
-│<span class="r4">         1 </span>│<span class="r5"> -32288.84 </span>│<span class="r8"> (https://app.gmx.io/#/accounts/0x4Cd80aa0CE4881Eb8679EdA1f6fbe3d89AEc0F7F?network=arbitrum&amp;v=2) </span>│
-└───────────┴───────────┴─────────────────────────────────────────────────────────────────────────────────────────────────┘
-<span class="r2">                                                    Most Losing Traders                                                    </span>
-┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-┃<span class="r3"> Trader ID </span>┃<span class="r3">       PnL </span>┃<span class="r3">                                                                                             URL </span>┃
-┡━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
-│<span class="r4">         1 </span>│<span class="r5"> -32288.84 </span>│<span class="r8"> (https://app.gmx.io/#/accounts/0x4Cd80aa0CE4881Eb8679EdA1f6fbe3d89AEc0F7F?network=arbitrum&amp;v=2) </span>│
-│<span class="r4">         0 </span>│<span class="r5">  -7890.85 </span>│<span class="r8"> (https://app.gmx.io/#/accounts/0x591b6F096281DD7b645767C96aC34863A4Df9a89?network=arbitrum&amp;v=2) </span>│
-│<span class="r4">         2 </span>│<span class="r5"> 359023.02 </span>│<span class="r8"> (https://app.gmx.io/#/accounts/0xfE191897EE42D56c6b0C85C7B489C1b1cb28c1E0?network=arbitrum&amp;v=2) </span>│
-└───────────┴───────────┴─────────────────────────────────────────────────────────────────────────────────────────────────┘
-<span class="r2">                                                   Largest Position Holders                                                    </span>
-┏━━━━━━━━━━━┳━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-┃<span class="r3"> Trader ID </span>┃<span class="r3"> Position Size </span>┃<span class="r3">                                                                                             URL </span>┃
-┡━━━━━━━━━━━╇━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
-│<span class="r4">         1 </span>│<span class="r6">    2961163.00 </span>│<span class="r8"> (https://app.gmx.io/#/accounts/0x4Cd80aa0CE4881Eb8679EdA1f6fbe3d89AEc0F7F?network=arbitrum&amp;v=2) </span>│
-│<span class="r4">         2 </span>│<span class="r6">    1415662.00 </span>│<span class="r8"> (https://app.gmx.io/#/accounts/0xfE191897EE42D56c6b0C85C7B489C1b1cb28c1E0?network=arbitrum&amp;v=2) </span>│
-│<span class="r4">         0 </span>│<span class="r6">     840671.00 </span>│<span class="r8"> (https://app.gmx.io/#/accounts/0x591b6F096281DD7b645767C96aC34863A4Df9a89?network=arbitrum&amp;v=2) </span>│
-└───────────┴───────────────┴─────────────────────────────────────────────────────────────────────────────────────────────────┘
-<span class="r2">                                            Top 10 Leveraged Traders (&lt;= 50x)                                             </span>
-┏━━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-┃<span class="r3"> Trader ID </span>┃<span class="r3"> Leverage </span>┃<span class="r3">                                                                                             URL </span>┃
-┡━━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
-│<span class="r4">         1 </span>│<span class="r6">    16.57 </span>│<span class="r8"> (https://app.gmx.io/#/accounts/0x4Cd80aa0CE4881Eb8679EdA1f6fbe3d89AEc0F7F?network=arbitrum&amp;v=2) </span>│
-│<span class="r4">         2 </span>│<span class="r6">     8.13 </span>│<span class="r8"> (https://app.gmx.io/#/accounts/0xfE191897EE42D56c6b0C85C7B489C1b1cb28c1E0?network=arbitrum&amp;v=2) </span>│
-│<span class="r4">         0 </span>│<span class="r6">     5.59 </span>│<span class="r8"> (https://app.gmx.io/#/accounts/0x591b6F096281DD7b645767C96aC34863A4Df9a89?network=arbitrum&amp;v=2) </span>│
-└───────────┴──────────┴─────────────────────────────────────────────────────────────────────────────────────────────────┘
+<span class="r2">                            Most Profitable Traders                            </span>
++-----------------------------------------------------------------------------+
+|<span class="r3"> Trader ID </span>|<span class="r3">       PnL </span>|<span class="r3">                                                 URL </span>|
+|-----------+-----------+-----------------------------------------------------|
+|<span class="r4">        63 </span>|<span class="r5"> 354420.22 </span>|<span class="r8"> (https://app.gmx.io/#/accounts/0xfE191897EE42D56c6… </span>|
+|<span class="r4">        52 </span>|<span class="r5"> 202784.72 </span>|<span class="r8"> (https://app.gmx.io/#/accounts/0x8C35B0b65Fc680dac… </span>|
+|<span class="r4">        94 </span>|<span class="r5"> 201521.02 </span>|<span class="r8"> (https://app.gmx.io/#/accounts/0x1501cf2e9afD2624a… </span>|
+|<span class="r4">        18 </span>|<span class="r5"> 186403.15 </span>|<span class="r8"> (https://app.gmx.io/#/accounts/0xB0399dAC8f4D4100b… </span>|
+|<span class="r4">        93 </span>|<span class="r5"> 147335.39 </span>|<span class="r8"> (https://app.gmx.io/#/accounts/0x215acCbc4667c3cdD… </span>|
+|<span class="r4">        23 </span>|<span class="r5"> 105518.57 </span>|<span class="r8"> (https://app.gmx.io/#/accounts/0xF2Bf93e79C187aB7c… </span>|
+|<span class="r4">        38 </span>|<span class="r5"> 104886.76 </span>|<span class="r8"> (https://app.gmx.io/#/accounts/0x76dB7b982AAef3581… </span>|
+|<span class="r4">        36 </span>|<span class="r5">  99439.60 </span>|<span class="r8"> (https://app.gmx.io/#/accounts/0xdB16BB1E9208c46fa… </span>|
+|<span class="r4">        16 </span>|<span class="r5">  75814.61 </span>|<span class="r8"> (https://app.gmx.io/#/accounts/0xaB98Cb3b6a2fC8577… </span>|
+|<span class="r4">        64 </span>|<span class="r5">  71205.06 </span>|<span class="r8"> (https://app.gmx.io/#/accounts/0xb4C0Cc176EA6Cb22D… </span>|
++-----------------------------------------------------------------------------+
+<span class="r2">                              Most Losing Traders                              </span>
++-----------------------------------------------------------------------------+
+|<span class="r3"> Trader ID </span>|<span class="r3">        PnL </span>|<span class="r3">                                                URL </span>|
+|-----------+------------+----------------------------------------------------|
+|<span class="r4">        22 </span>|<span class="r5"> -184034.51 </span>|<span class="r8"> (https://app.gmx.io/#/accounts/0x6859dA1483542495… </span>|
+|<span class="r4">        79 </span>|<span class="r5"> -171154.83 </span>|<span class="r8"> (https://app.gmx.io/#/accounts/0xe2823659bE02E0F4… </span>|
+|<span class="r4">        62 </span>|<span class="r5"> -166739.03 </span>|<span class="r8"> (https://app.gmx.io/#/accounts/0x08c788aFdACF6cf8… </span>|
+|<span class="r4">        56 </span>|<span class="r5"> -163086.29 </span>|<span class="r8"> (https://app.gmx.io/#/accounts/0x0925eDb94a1be302… </span>|
+|<span class="r4">        59 </span>|<span class="r5"> -146848.61 </span>|<span class="r8"> (https://app.gmx.io/#/accounts/0x1C1e747A6BE85054… </span>|
+|<span class="r4">       108 </span>|<span class="r5"> -140422.83 </span>|<span class="r8"> (https://app.gmx.io/#/accounts/0x08Fc297828CD6eE7… </span>|
+|<span class="r4">        31 </span>|<span class="r5"> -138303.46 </span>|<span class="r8"> (https://app.gmx.io/#/accounts/0x19664708e6E2eb4a… </span>|
+|<span class="r4">         8 </span>|<span class="r5">  -71625.45 </span>|<span class="r8"> (https://app.gmx.io/#/accounts/0x4B5d5CFc9D4a5468… </span>|
+|<span class="r4">       107 </span>|<span class="r5">  -62294.74 </span>|<span class="r8"> (https://app.gmx.io/#/accounts/0x39b622F38BeeA012… </span>|
+|<span class="r4">       102 </span>|<span class="r5">  -47813.22 </span>|<span class="r8"> (https://app.gmx.io/#/accounts/0xb2d78E67eeE79Ef1… </span>|
++-----------------------------------------------------------------------------+
+<span class="r2">                           Largest Position Holders                            </span>
++-----------------------------------------------------------------------------+
+|<span class="r3"> Trader ID </span>|<span class="r3"> Position Size </span>|<span class="r3">                                             URL </span>|
+|-----------+---------------+-------------------------------------------------|
+|<span class="r4">        62 </span>|<span class="r6">    7880108.00 </span>|<span class="r8"> (https://app.gmx.io/#/accounts/0x08c788aFdACF6… </span>|
+|<span class="r4">        59 </span>|<span class="r6">    3289563.00 </span>|<span class="r8"> (https://app.gmx.io/#/accounts/0x1C1e747A6BE85… </span>|
+|<span class="r4">       109 </span>|<span class="r6">    2960246.00 </span>|<span class="r8"> (https://app.gmx.io/#/accounts/0x4Cd80aa0CE488… </span>|
+|<span class="r4">       104 </span>|<span class="r6">    2897209.00 </span>|<span class="r8"> (https://app.gmx.io/#/accounts/0x2c2f76429EAB8… </span>|
+|<span class="r4">        48 </span>|<span class="r6">    2319398.00 </span>|<span class="r8"> (https://app.gmx.io/#/accounts/0xaea8E3Bd36921… </span>|
+|<span class="r4">        79 </span>|<span class="r6">    2240459.00 </span>|<span class="r8"> (https://app.gmx.io/#/accounts/0xe2823659bE02E… </span>|
+|<span class="r4">        22 </span>|<span class="r6">    2191269.00 </span>|<span class="r8"> (https://app.gmx.io/#/accounts/0x6859dA1483542… </span>|
+|<span class="r4">        37 </span>|<span class="r6">    2004762.00 </span>|<span class="r8"> (https://app.gmx.io/#/accounts/0xf34b1Bf36728d… </span>|
+|<span class="r4">        29 </span>|<span class="r6">    1829631.00 </span>|<span class="r8"> (https://app.gmx.io/#/accounts/0x6760Ff558c1db… </span>|
+|<span class="r4">        63 </span>|<span class="r6">    1416294.00 </span>|<span class="r8"> (https://app.gmx.io/#/accounts/0xfE191897EE42D… </span>|
++-----------------------------------------------------------------------------+
+<span class="r2">                       Top 10 Leveraged Traders (&lt;= 50x)                       </span>
++-----------------------------------------------------------------------------+
+|<span class="r3"> Trader ID </span>|<span class="r3"> Leverage </span>|<span class="r3">                                                  URL </span>|
+|-----------+----------+------------------------------------------------------|
+|<span class="r4">        83 </span>|<span class="r6">    36.67 </span>|<span class="r8"> (https://app.gmx.io/#/accounts/0x8FC339425b2c5BE020… </span>|
+|<span class="r4">        79 </span>|<span class="r6">    29.30 </span>|<span class="r8"> (https://app.gmx.io/#/accounts/0xe2823659bE02E0F48a… </span>|
+|<span class="r4">        72 </span>|<span class="r6">    29.27 </span>|<span class="r8"> (https://app.gmx.io/#/accounts/0xcFa0AB31d240e4E831… </span>|
+|<span class="r4">        54 </span>|<span class="r6">    25.61 </span>|<span class="r8"> (https://app.gmx.io/#/accounts/0x51c96a19F6a9F8162C… </span>|
+|<span class="r4">        77 </span>|<span class="r6">    20.82 </span>|<span class="r8"> (https://app.gmx.io/#/accounts/0x52ecc65D6fA170a4Ce… </span>|
+|<span class="r4">         7 </span>|<span class="r6">    20.45 </span>|<span class="r8"> (https://app.gmx.io/#/accounts/0xAb709116e3E2D4fA82… </span>|
+|<span class="r4">        61 </span>|<span class="r6">    19.02 </span>|<span class="r8"> (https://app.gmx.io/#/accounts/0x2a42CF4E1Cfc33850F… </span>|
+|<span class="r4">       109 </span>|<span class="r6">    16.59 </span>|<span class="r8"> (https://app.gmx.io/#/accounts/0x4Cd80aa0CE4881Eb86… </span>|
+|<span class="r4">       108 </span>|<span class="r6">    14.78 </span>|<span class="r8"> (https://app.gmx.io/#/accounts/0x08Fc297828CD6eE79E… </span>|
+|<span class="r4">        36 </span>|<span class="r6">    13.18 </span>|<span class="r8"> (https://app.gmx.io/#/accounts/0xdB16BB1E9208c46fa0… </span>|
++-----------------------------------------------------------------------------+
 
 <span class="r1">Asset Data</span>
 <span class="r2">             Asset Data (Excluding &#x27;Unknown&#x27;)              </span>
-┏━━━━━━━┳━━━━━━━┳━━━━━━━━┳━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━┓
-┃<span class="r3"> Asset </span>┃<span class="r3"> Longs </span>┃<span class="r3"> Shorts </span>┃<span class="r3"> Average Leverage </span>┃<span class="r3"> Average PnL </span>┃
-┡━━━━━━━╇━━━━━━━╇━━━━━━━━╇━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━┩
-│<span class="r4">   ETH </span>│<span class="r5">     0 </span>│<span class="r6">      2 </span>│<span class="r7">             9.04 </span>│<span class="r8">   189394.81 </span>│
-│<span class="r4">  DOGE </span>│<span class="r5">     0 </span>│<span class="r6">      1 </span>│<span class="r7">             9.82 </span>│<span class="r8">    16714.87 </span>│
-│<span class="r4">  PEPE </span>│<span class="r5">     0 </span>│<span class="r6">      1 </span>│<span class="r7">             8.19 </span>│<span class="r8">    15206.13 </span>│
-│<span class="r4">  AVAX </span>│<span class="r5">     0 </span>│<span class="r6">      1 </span>│<span class="r7">            80.48 </span>│<span class="r8">    11437.64 </span>│
-│<span class="r4">   GMX </span>│<span class="r5">     0 </span>│<span class="r6">      1 </span>│<span class="r7">             7.56 </span>│<span class="r8">     8795.98 </span>│
-│<span class="r4">  LINK </span>│<span class="r5">     0 </span>│<span class="r6">      1 </span>│<span class="r7">             6.35 </span>│<span class="r8">     4623.40 </span>│
-│<span class="r4">  NEAR </span>│<span class="r5">     0 </span>│<span class="r6">      1 </span>│<span class="r7">             6.25 </span>│<span class="r8">     1324.01 </span>│
-│<span class="r4">   UNI </span>│<span class="r5">     0 </span>│<span class="r6">      1 </span>│<span class="r7">            11.14 </span>│<span class="r8">      668.88 </span>│
-│<span class="r4">   BTC </span>│<span class="r5">     0 </span>│<span class="r6">      3 </span>│<span class="r7">             9.17 </span>│<span class="r8">    -2180.27 </span>│
-│<span class="r4">   SOL </span>│<span class="r5">     0 </span>│<span class="r6">      1 </span>│<span class="r7">             5.26 </span>│<span class="r8">  -112176.40 </span>│
-└───────┴───────┴────────┴──────────────────┴─────────────┘
++---------------------------------------------------------+
+|<span class="r3"> Asset </span>|<span class="r3"> Longs </span>|<span class="r3"> Shorts </span>|<span class="r3"> Average Leverage </span>|<span class="r3"> Average PnL </span>|
+|-------+-------+--------+------------------+-------------|
+|<span class="r4">   ETH </span>|<span class="r5">     4 </span>|<span class="r6">     32 </span>|<span class="r7">             8.51 </span>|<span class="r8">    33979.48 </span>|
+|<span class="r4">   ARB </span>|<span class="r5">     1 </span>|<span class="r6">      5 </span>|<span class="r7">             2.70 </span>|<span class="r8">    11500.87 </span>|
+|<span class="r4">   GMX </span>|<span class="r5">     0 </span>|<span class="r6">      4 </span>|<span class="r7">             5.59 </span>|<span class="r8">    11098.49 </span>|
+|<span class="r4">   WIF </span>|<span class="r5">     0 </span>|<span class="r6">      2 </span>|<span class="r7">             6.80 </span>|<span class="r8">    10197.43 </span>|
+|<span class="r4">   XRP </span>|<span class="r5">     0 </span>|<span class="r6">      1 </span>|<span class="r7">            11.86 </span>|<span class="r8">     8686.35 </span>|
+|<span class="r4">  PEPE </span>|<span class="r5">     0 </span>|<span class="r6">      5 </span>|<span class="r7">             5.29 </span>|<span class="r8">     4466.09 </span>|
+|<span class="r4">    OP </span>|<span class="r5">     0 </span>|<span class="r6">      1 </span>|<span class="r7">            10.44 </span>|<span class="r8">     3586.28 </span>|
+|<span class="r4">  NEAR </span>|<span class="r5">     0 </span>|<span class="r6">      2 </span>|<span class="r7">             5.48 </span>|<span class="r8">     3087.98 </span>|
+|<span class="r4">  AVAX </span>|<span class="r5">     0 </span>|<span class="r6">      3 </span>|<span class="r7">             5.29 </span>|<span class="r8">     2866.70 </span>|
+|<span class="r4">   UNI </span>|<span class="r5">     0 </span>|<span class="r6">      4 </span>|<span class="r7">             8.40 </span>|<span class="r8">     2068.54 </span>|
+|<span class="r4">  ATOM </span>|<span class="r5">     0 </span>|<span class="r6">      1 </span>|<span class="r7">             6.05 </span>|<span class="r8">     1092.85 </span>|
+|<span class="r4">   LTC </span>|<span class="r5">     0 </span>|<span class="r6">      2 </span>|<span class="r7">             4.25 </span>|<span class="r8">      753.65 </span>|
+|<span class="r4">  SHIB </span>|<span class="r5">     0 </span>|<span class="r6">      1 </span>|<span class="r7">             4.88 </span>|<span class="r8">      747.69 </span>|
+|<span class="r4">   SEI </span>|<span class="r5">     0 </span>|<span class="r6">      1 </span>|<span class="r7">             5.08 </span>|<span class="r8">       53.54 </span>|
+|<span class="r4">   SUI </span>|<span class="r5">     0 </span>|<span class="r6">      1 </span>|<span class="r7">             5.97 </span>|<span class="r8">       21.30 </span>|
+|<span class="r4">   SOL </span>|<span class="r5">     7 </span>|<span class="r6">      9 </span>|<span class="r7">             7.85 </span>|<span class="r8">     -338.78 </span>|
+|<span class="r4">  AAVE </span>|<span class="r5">     0 </span>|<span class="r6">      1 </span>|<span class="r7">             6.53 </span>|<span class="r8">     -424.77 </span>|
+|<span class="r4">   BNB </span>|<span class="r5">     0 </span>|<span class="r6">      2 </span>|<span class="r7">             6.47 </span>|<span class="r8">     -595.86 </span>|
+|<span class="r4"> EIGEN </span>|<span class="r5">     0 </span>|<span class="r6">      1 </span>|<span class="r7">             3.15 </span>|<span class="r8">    -1252.62 </span>|
+|<span class="r4">  DOGE </span>|<span class="r5">     0 </span>|<span class="r6">      4 </span>|<span class="r7">             4.72 </span>|<span class="r8">    -1617.64 </span>|
+|<span class="r4">  LINK </span>|<span class="r5">     2 </span>|<span class="r6">     12 </span>|<span class="r7">             3.50 </span>|<span class="r8">    -1895.10 </span>|
+|<span class="r4">   BTC </span>|<span class="r5">     8 </span>|<span class="r6">     38 </span>|<span class="r7">             8.57 </span>|<span class="r8">   -17736.32 </span>|
++---------------------------------------------------------+
 <span class="r2">                   Pending Orders                    </span>
-┏━━━━━━━┳━━━━━━━━━━━━━┳━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━┓
-┃<span class="r3"> Asset </span>┃<span class="r3"> Long Orders </span>┃<span class="r3"> Short Orders </span>┃<span class="r3"> Total Orders </span>┃
-┡━━━━━━━╇━━━━━━━━━━━━━╇━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━┩
-└───────┴─────────────┴──────────────┴──────────────┘
++---------------------------------------------------+
+|<span class="r3"> Asset </span>|<span class="r3"> Long Orders </span>|<span class="r3"> Short Orders </span>|<span class="r3"> Total Orders </span>|
+|-------+-------------+--------------+--------------|
+|<span class="r4">   BTC </span>|<span class="r5">          27 </span>|<span class="r6">           24 </span>|<span class="r7">           51 </span>|
+|<span class="r4">   ETH </span>|<span class="r5">           5 </span>|<span class="r6">           10 </span>|<span class="r7">           15 </span>|
+|<span class="r4">   SOL </span>|<span class="r5">          10 </span>|<span class="r6">            2 </span>|<span class="r7">           12 </span>|
+|<span class="r4">  LINK </span>|<span class="r5">           2 </span>|<span class="r6">            4 </span>|<span class="r7">            6 </span>|
+|<span class="r4">  DOGE </span>|<span class="r5">           1 </span>|<span class="r6">            3 </span>|<span class="r7">            4 </span>|
+|<span class="r4">  AVAX </span>|<span class="r5">           1 </span>|<span class="r6">            3 </span>|<span class="r7">            4 </span>|
+|<span class="r4">  PEPE </span>|<span class="r5">           1 </span>|<span class="r6">            2 </span>|<span class="r7">            3 </span>|
+|<span class="r4">   UNI </span>|<span class="r5">           0 </span>|<span class="r6">            3 </span>|<span class="r7">            3 </span>|
+|<span class="r4">  NEAR </span>|<span class="r5">           0 </span>|<span class="r6">            3 </span>|<span class="r7">            3 </span>|
+|<span class="r4">   BNB </span>|<span class="r5">           1 </span>|<span class="r6">            2 </span>|<span class="r7">            3 </span>|
+|<span class="r4">   ARB </span>|<span class="r5">           1 </span>|<span class="r6">            1 </span>|<span class="r7">            2 </span>|
+|<span class="r4">   GMX </span>|<span class="r5">           1 </span>|<span class="r6">            1 </span>|<span class="r7">            2 </span>|
+|<span class="r4">  AAVE </span>|<span class="r5">           1 </span>|<span class="r6">            1 </span>|<span class="r7">            2 </span>|
+|<span class="r4">   XRP </span>|<span class="r5">           1 </span>|<span class="r6">            1 </span>|<span class="r7">            2 </span>|
+|<span class="r4">   WIF </span>|<span class="r5">           1 </span>|<span class="r6">            1 </span>|<span class="r7">            2 </span>|
+|<span class="r4">   LTC </span>|<span class="r5">           1 </span>|<span class="r6">            1 </span>|<span class="r7">            2 </span>|
+|<span class="r4">  ATOM </span>|<span class="r5">           1 </span>|<span class="r6">            1 </span>|<span class="r7">            2 </span>|
+|<span class="r4">    OP </span>|<span class="r5">           1 </span>|<span class="r6">            1 </span>|<span class="r7">            2 </span>|
+|<span class="r4">  SHIB </span>|<span class="r5">           1 </span>|<span class="r6">            1 </span>|<span class="r7">            2 </span>|
+|<span class="r4">  ORDI </span>|<span class="r5">           1 </span>|<span class="r6">            1 </span>|<span class="r7">            2 </span>|
+|<span class="r4">   STX </span>|<span class="r5">           1 </span>|<span class="r6">            1 </span>|<span class="r7">            2 </span>|
+|<span class="r4">   SUI </span>|<span class="r5">           0 </span>|<span class="r6">            1 </span>|<span class="r7">            1 </span>|
+|<span class="r4"> EIGEN </span>|<span class="r5">           0 </span>|<span class="r6">            1 </span>|<span class="r7">            1 </span>|
+|<span class="r4">   SEI </span>|<span class="r5">           0 </span>|<span class="r6">            1 </span>|<span class="r7">            1 </span>|
+|<span class="r4">  SATS </span>|<span class="r5">           0 </span>|<span class="r6">            1 </span>|<span class="r7">            1 </span>|
+|<span class="r4">   POL </span>|<span class="r5">           0 </span>|<span class="r6">            1 </span>|<span class="r7">            1 </span>|
++---------------------------------------------------+
 
 <span class="r1">Order Hotspot Analysis</span>
-<span class="r7">No order hotspots identified.</span>
+<span class="r2">                        BTC Order Hotspots                        </span>
++----------------------------------------------------------------+
+|<span class="r3"> Cluster Price </span>|<span class="r3"> Direction </span>|<span class="r3"> Trader ID </span>|<span class="r3">  Order Type </span>|<span class="r3">    Price </span>|
+|---------------+-----------+-----------+-------------+----------|
+|<span class="r4">      68600.00 </span>|<span class="r5">      Long </span>|<span class="r6">        15 </span>|<span class="r7"> Take-Profit </span>|<span class="r8"> 68600.00 </span>|
+|<span class="r4">      68600.00 </span>|<span class="r5">      Long </span>|<span class="r6">        33 </span>|<span class="r7">   Stop-Loss </span>|<span class="r8"> 68800.00 </span>|
+|<span class="r4">      68600.00 </span>|<span class="r5">      Long </span>|<span class="r6">        61 </span>|<span class="r7"> Take-Profit </span>|<span class="r8"> 70555.00 </span>|
+|<span class="r4">      68600.00 </span>|<span class="r5">     Short </span>|<span class="r6">        89 </span>|<span class="r7">   Stop-Loss </span>|<span class="r8"> 68900.00 </span>|
+|<span class="r4">      68600.00 </span>|<span class="r5">     Short </span>|<span class="r6">       106 </span>|<span class="r7">   Stop-Loss </span>|<span class="r8"> 67540.00 </span>|
+|<span class="r4">      64510.00 </span>|<span class="r5">      Long </span>|<span class="r6">        45 </span>|<span class="r7">       Limit </span>|<span class="r8"> 64510.00 </span>|
+|<span class="r4">      64510.00 </span>|<span class="r5">      Long </span>|<span class="r6">        61 </span>|<span class="r7">       Limit </span>|<span class="r8"> 64555.00 </span>|
+|<span class="r4">      64510.00 </span>|<span class="r5">      Long </span>|<span class="r6">        61 </span>|<span class="r7">       Limit </span>|<span class="r8"> 65555.00 </span>|
+|<span class="r4">      64510.00 </span>|<span class="r5">      Long </span>|<span class="r6">        61 </span>|<span class="r7">       Limit </span>|<span class="r8"> 65955.00 </span>|
+|<span class="r4">      64510.00 </span>|<span class="r5">      Long </span>|<span class="r6">       106 </span>|<span class="r7">   Stop-Loss </span>|<span class="r8"> 66500.00 </span>|
+|<span class="r4">      64510.00 </span>|<span class="r5">     Short </span>|<span class="r6">        54 </span>|<span class="r7"> Take-Profit </span>|<span class="r8"> 63172.00 </span>|
+|<span class="r4">      64510.00 </span>|<span class="r5">     Short </span>|<span class="r6">        54 </span>|<span class="r7"> Take-Profit </span>|<span class="r8"> 64098.00 </span>|
+|<span class="r4">      64510.00 </span>|<span class="r5">     Short </span>|<span class="r6">        54 </span>|<span class="r7"> Take-Profit </span>|<span class="r8"> 64376.00 </span>|
+|<span class="r4">      64510.00 </span>|<span class="r5">     Short </span>|<span class="r6">        54 </span>|<span class="r7"> Take-Profit </span>|<span class="r8"> 64932.00 </span>|
+|<span class="r4">      64510.00 </span>|<span class="r5">     Short </span>|<span class="r6">        54 </span>|<span class="r7"> Take-Profit </span>|<span class="r8"> 65170.00 </span>|
+|<span class="r4">      64510.00 </span>|<span class="r5">     Short </span>|<span class="r6">        54 </span>|<span class="r7"> Take-Profit </span>|<span class="r8"> 65479.00 </span>|
+|<span class="r4">      64510.00 </span>|<span class="r5">     Short </span>|<span class="r6">        61 </span>|<span class="r7"> Take-Profit </span>|<span class="r8"> 65555.00 </span>|
+|<span class="r4">      64510.00 </span>|<span class="r5">     Short </span>|<span class="r6">        61 </span>|<span class="r7"> Take-Profit </span>|<span class="r8"> 65955.00 </span>|
+|<span class="r4">      64510.00 </span>|<span class="r5">     Short </span>|<span class="r6">        99 </span>|<span class="r7"> Take-Profit </span>|<span class="r8"> 63000.00 </span>|
++----------------------------------------------------------------+
 
 <span class="r1">Liquidation Risk Analysis</span>
-<span class="r7">No positions are close to liquidation.</span>
+<span class="r2">                               Liquidation Risk                                </span>
++-----------------------------------------------------------------------------+
+|<span class="r3"> Trad… </span>|<span class="r3">       </span>|<span class="r3">       </span>|<span class="r3"> Posi… </span>|<span class="r3">       </span>|<span class="r3">       </span>|<span class="r3">   Liq </span>|<span class="r3"> Cur… </span>|<span class="r3"> Diff… </span>|<span class="r3">      </span>|
+|<span class="r3">    ID </span>|<span class="r3"> Asset </span>|<span class="r3"> Leve… </span>|<span class="r3">  Size </span>|<span class="r3">   PnL </span>|<span class="r3"> Coll… </span>|<span class="r3"> Price </span>|<span class="r3"> Pri… </span>|<span class="r3">     % </span>|<span class="r3">  URL </span>|
+|-------+-------+-------+-------+-------+-------+-------+------+-------+------|
+|<span class="r4">    45 </span>|<span class="r5">  LINK </span>|<span class="r6"> 10.9… </span>|<span class="r7"> $249… </span>|<span class="r9"> $-13… </span>|<span class="r4"> $229… </span>|<span class="r8"> $10.… </span>|<span class="r6"> $10… </span>|<span class="r5"> 3.93% </span>|<span class="r8"> </span><a class="r8" href="https://app.gmx.io/#/accounts/0x6345f694846335624d182c7a6FfD342B70D462AF?v=2"> ht…</a><span class="r8"> </span>|
+|<span class="r4">    54 </span>|<span class="r5">   BTC </span>|<span class="r6"> 18.4x </span>|<span class="r7"> $169… </span>|<span class="r9"> $-19… </span>|<span class="r4"> $919… </span>|<span class="r8"> $696… </span>|<span class="r6"> $66… </span>|<span class="r5"> 3.95% </span>|<span class="r8"> </span><a class="r8" href="https://app.gmx.io/#/accounts/0x51c96a19F6a9F8162Ca56f3457D31BFB2101871B?v=2"> ht…</a><span class="r8"> </span>|
+|<span class="r4">    54 </span>|<span class="r5">   BTC </span>|<span class="r6"> 25.6… </span>|<span class="r7"> $435… </span>|<span class="r9"> $-72… </span>|<span class="r4"> $170… </span>|<span class="r8"> $693… </span>|<span class="r6"> $66… </span>|<span class="r5"> 3.58% </span>|<span class="r8"> </span><a class="r8" href="https://app.gmx.io/#/accounts/0x51c96a19F6a9F8162Ca56f3457D31BFB2101871B?v=2"> ht…</a><span class="r8"> </span>|
+|<span class="r4">    61 </span>|<span class="r5">   BTC </span>|<span class="r6"> 19.0… </span>|<span class="r7"> $503… </span>|<span class="r9"> $24.… </span>|<span class="r4"> $264… </span>|<span class="r8"> $701… </span>|<span class="r6"> $66… </span>|<span class="r5"> 4.80% </span>|<span class="r8"> </span><a class="r8" href="https://app.gmx.io/#/accounts/0x2a42CF4E1Cfc33850FD8d8DA24F86Cd89b82ad95?v=2"> ht…</a><span class="r8"> </span>|
+|<span class="r4">    77 </span>|<span class="r5">   BTC </span>|<span class="r6"> 17.4… </span>|<span class="r7"> $904… </span>|<span class="r9"> $-33… </span>|<span class="r4"> $517… </span>|<span class="r8"> $679… </span>|<span class="r6"> $66… </span>|<span class="r5"> 1.51% </span>|<span class="r8"> </span><a class="r8" href="https://app.gmx.io/#/accounts/0x52ecc65D6fA170a4Cec1426919006aF96f4B099a?v=2"> ht…</a><span class="r8"> </span>|
+|<span class="r4">    88 </span>|<span class="r5">   BTC </span>|<span class="r6"> 63.0… </span>|<span class="r7"> $816… </span>|<span class="r9"> $129… </span>|<span class="r4"> $129… </span>|<span class="r8"> $687… </span>|<span class="r6"> $66… </span>|<span class="r5"> 2.73% </span>|<span class="r8"> </span><a class="r8" href="https://app.gmx.io/#/accounts/0xC430255523031114fcC2b08e7d24472B7011e3E9?v=2"> ht…</a><span class="r8"> </span>|
++-----------------------------------------------------------------------------+
 
-<span class="r3">Analysis Run Date:</span> <span class="r1">2024</span>-<span class="r1">10</span>-<span class="r1">26</span> <span class="r9">05:59:50</span>
+<span class="r3">Analysis Run Date:</span> <span class="r1">2024</span>-<span class="r1">10</span>-<span class="r1">26</span> <span class="r10">22:52:54</span>
 
 </code></pre>
 </body>
