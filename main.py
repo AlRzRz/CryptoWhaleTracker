@@ -23,8 +23,9 @@ def main():
   if not os.path.exists(data_dir):
     os.makedirs(data_dir)
   
-  traderURLS = testData()
-  # traderURLS = accountURLScraper()
+  # traderURLS = list(accountURLScraper())
+  # traderURLS = traderURLS[44:62]
+  traderURLS = accountURLScraper()
   lstOfTraders = accountPageScraper(traderURLS)
 
   # root = tk.Tk()

@@ -41,7 +41,7 @@ def manage_output_files():
         os.rename(new_file, prev_file)
 
 def save_html_output():
-    """Saves the current console output to new.html with timestamp information."""
+    """Saves the current console output to new.html with timestamp information and enforces dark mode styling."""
     # Ensure the data directory exists
     if not os.path.exists(OUTPUT_DIR):
         os.makedirs(OUTPUT_DIR)
@@ -55,6 +55,20 @@ def save_html_output():
     # Save new.html file in the data directory
     new_output_path = os.path.join(OUTPUT_DIR, 'new.html')
     console.save_html(new_output_path)
+
+    # Open the saved HTML file and apply inline dark mode styling directly to the <body> tag
+    with open(new_output_path, 'r+', encoding='utf-8') as file:
+        html_content = file.read()
+
+        # Directly modify the <body> tag to include dark mode inline styling
+        html_content = html_content.replace(
+            "<body>", "<body style='color: white; background-color: black;'>"
+        )
+        
+        # Write the modified content back to the file
+        file.seek(0)
+        file.write(html_content)
+        file.truncate()  # Clears any remaining content if new content is shorter
 
 
 def strip_html_tags(text):
@@ -180,7 +194,7 @@ def print_liquidation_risk(risk_positions):
 
     for pos in risk_positions:
         # Use Rich's hyperlink syntax with smaller text styling
-        url_link = f"[link={pos['trader_url']}] [small]{pos['trader_url']}[/small] [/link]"
+        url_link = f"[link={pos['trader_url']}] {pos['trader_url']} [/link]"
         table.add_row(
             str(pos["trader_id"]),
             pos["asset"],
@@ -304,17 +318,17 @@ def calculate_collateral_distribution(tradersLst):
         'average_collateral': np.mean(collateral_values)
     }
 
-def get_top_traders(tradersLst, top=True, n=10):
+def get_top_traders(tradersLst, top=True, n=15):
     all_traders = [(trader, sum([pos.pnl for pos in trader.positions])) for trader in tradersLst]
     all_traders.sort(key=lambda x: x[1], reverse=top)
     return all_traders[:n]
 
-def get_largest_position_holders(tradersLst, n=10):
+def get_largest_position_holders(tradersLst, n=15):
     traders_positions = [(trader, max([pos.size for pos in trader.positions], default=0)) for trader in tradersLst]
     traders_positions.sort(key=lambda x: x[1], reverse=True)
     return traders_positions[:n]
 
-def get_top_leveraged_traders(tradersLst, n=10):
+def get_top_leveraged_traders(tradersLst, n=15):
     # Exclude traders with positions having leverage above 50
     traders_leverage = [
         (trader, max([pos.leverage for pos in trader.positions if pos.leverage <= 50], default=0))
@@ -391,13 +405,24 @@ def calculate_order_hotspots(tradersLst, price_range_percent=3, min_traders=3):
 
             for cluster_price, data in clusters.items():
                 if lower_bound <= cluster_price <= upper_bound:
-                    data[direction].append({'trader_id': trader.traderID, 'price': trigger_price, 'type': order.orderType})
+                    # Attach trader URL to each order entry
+                    data[direction].append({
+                        'trader_id': trader.traderID,
+                        'price': trigger_price,
+                        'type': order.orderType,
+                        'trader_url': trader.url  # Add the trader URL here
+                    })
                     found_cluster = True
                     break
 
             if not found_cluster:
                 # Create a new cluster if none matched
-                clusters[trigger_price][direction].append({'trader_id': trader.traderID, 'price': trigger_price, 'type': order.orderType})
+                clusters[trigger_price][direction].append({
+                    'trader_id': trader.traderID,
+                    'price': trigger_price,
+                    'type': order.orderType,
+                    'trader_url': trader.url  # Add the trader URL here
+                })
 
     # Filter clusters to identify hotspots
     final_hotspots = {}
@@ -414,6 +439,7 @@ def calculate_order_hotspots(tradersLst, price_range_percent=3, min_traders=3):
                     'Short': data['Short']
                 })
     return final_hotspots
+
 
 
 # Output formatting functions using Rich
@@ -468,7 +494,7 @@ def print_top_traders(traders, title):
     table.add_column("URL", justify="right", style="yellow")
 
     for trader, pnl in traders:
-        url_link = f"[{trader.url}]({trader.url})"  # Markdown formatted link
+        url_link = f"[link={trader.url}]{trader.url}[/link]"  # Markdown formatted link
         table.add_row(str(trader.traderID), f"{pnl:.2f}", url_link)
 
     console.print(table)
@@ -480,7 +506,7 @@ def print_largest_position_holders(traders):
     table.add_column("URL", justify="right", style="yellow")
 
     for trader, size in traders:
-        url_link = f"[{trader.url}]({trader.url})"  # Markdown formatted link
+        url_link = f"[link={trader.url}]{trader.url}[/link]"  # Markdown formatted link
         table.add_row(str(trader.traderID), f"{size:.2f}", url_link)
 
     console.print(table)
@@ -492,7 +518,7 @@ def print_top_leveraged_traders(traders):
     table.add_column("URL", justify="right", style="yellow")
 
     for trader, leverage in traders:
-        url_link = f"[{trader.url}]({trader.url})"
+        url_link = f"[link={trader.url}]{trader.url}[/link]"
         table.add_row(str(trader.traderID), f"{leverage:.2f}", url_link)
 
     console.print(table)
@@ -540,18 +566,22 @@ def print_order_hotspots(hotspots):
         table.add_column("Trader ID", justify="right", style="green")
         table.add_column("Order Type", justify="right", style="yellow")
         table.add_column("Price", justify="right", style="cyan")
+        table.add_column("URL", justify="right", style="yellow")  # New column for the URL
 
         for cluster in clusters:
             for direction, orders in cluster.items():
                 if direction not in ["Long", "Short"]:
                     continue
                 for order in orders:
+                    # Format the URL as a clickable link
+                    url_link = f"[link={order['trader_url']}] {order['trader_url']} [/link]"  # Add URL as clickable link
                     table.add_row(
                         f"{cluster['cluster_price']:.2f}",
                         direction,
                         str(order['trader_id']),
                         order['type'],
-                        f"{order['price']:.2f}"
+                        f"{order['price']:.2f}",
+                        url_link  # Add the URL in the new column
                     )
         console.print(table)
 
