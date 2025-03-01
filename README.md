@@ -3,6 +3,8 @@
 ## 📌 Overview
 Crypto Whale Tracker is a **Python-based** tool that scrapes a decentralized exchange's leaderboard, performs calculations on the collected data, and presents insights into the trading activities of top traders (**"whales"**).
 
+![Crypto Whale](https://media.giphy.com/media/l3q2D3hU7J39rhFF2/giphy.gif)
+
 ---
 
 ## ✨ Features
