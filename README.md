@@ -143,6 +143,3 @@ Contributions are welcome! 🎉
 - Submit a **pull request** to contribute improvements.
 
 ---
-
-🚀 **Happy Tracking!** 📊🐳
-
